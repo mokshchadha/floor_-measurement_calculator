@@ -1,0 +1,11 @@
+
+.input__segment{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+  }
+  
+  .input__box{
+      margin-right: 0.5rem;
+  }
+   
