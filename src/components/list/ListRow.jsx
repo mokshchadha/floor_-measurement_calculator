@@ -34,6 +34,7 @@ export const ListRow = ({
           placeholder="in"
         ></input>
       </td>
+      <td>*</td>
       <td className="input__box">
         <input
           type="number"
