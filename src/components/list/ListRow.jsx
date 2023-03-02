@@ -8,6 +8,7 @@ export const ListRow = ({
   updateBreadth,
   idx,
   removeItem,
+  total,
 }) => {
   return (
     <tr key={id} className="table__row">
@@ -47,7 +48,7 @@ export const ListRow = ({
           placeholder="in"
         ></input>
       </td>
-      <td></td>
+      <td>{total}</td>
       <td>
         <button onClick={() => removeItem(id)}>Remove</button>
       </td>

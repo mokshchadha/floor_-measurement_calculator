@@ -9,6 +9,7 @@ function emptyListObject() {
     length: { ft: "", in: "" },
     breadth: { ft: "", in: "" },
     title: "",
+    total: "",
   };
 }
 
@@ -22,6 +23,7 @@ export const List = () => {
     const newKey = isft ? "ft" : "in";
     const item = list.find((e) => e.id === id);
     if (!item) return;
+
     setList([
       ...list.map((e) =>
         e.id !== id ? e : { ...e, length: { ...e.length, [newKey]: value } }
