@@ -8,11 +8,24 @@ const _1_FT_TO_INCHES = 12;
 function emptyListObject() {
   return {
     id: crypto.randomUUID(),
-    length: { ft: "", in: "" },
-    breadth: { ft: "", in: "" },
     title: "",
     total: "",
+    length: { ft: "", in: "" },
+    breadth: { ft: "", in: "" },
+    lengthStr: "",
+    breadthStr: "",
+    displayLength: "",
+    displayBreadth: "",
+    isLengthValid: true,
+    isBreadthValid: true,
   };
+}
+
+function displayMeasurement(value, isValid) {
+  if (!isValid) return "";
+  const [ft, inch] = value.split(".");
+  if (ft.trim() === "") return "";
+  return `${ft}' ${inch}"`;
 }
 
 function isMeasurementValid(measurement) {
@@ -32,8 +45,14 @@ function convertToInches(measurement) {
 }
 
 function computeTotal(item) {
-  const { length, breadth } = item;
-  if (isMeasurementValid(length) && isMeasurementValid(breadth)) {
+  const { length, breadth, isBreadthValid, isLengthValid } = item;
+
+  if (
+    isBreadthValid &&
+    isLengthValid &&
+    isMeasurementValid(length) &&
+    isMeasurementValid(breadth)
+  ) {
     const lengthInInches = convertToInches(length);
     const breadthInInches = convertToInches(breadth);
 
@@ -59,21 +78,44 @@ export const List = () => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
   };
 
-  const updateLength = (value, id, isft = true) => {
-    const newKey = isft ? "ft" : "in";
+  const updateLength = (value, id) => {
     const item = list.find((e) => e.id === id);
     if (!item) return;
 
-    const newItem = { ...item, length: { ...item.length, [newKey]: value } };
+    const [ft, inch] = value.split(".");
+
+    const isLengthValid = parseInt(inch) <= 11;
+
+    const displayLength = displayMeasurement(value, isLengthValid);
+
+    const newItem = {
+      ...item,
+      length: { ft: ft, in: inch },
+      lengthStr: value,
+      isLengthValid,
+      displayLength,
+    };
+
     const total = computeTotal(newItem);
     setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
   };
 
-  const updateBreadth = (value, id, isft = true) => {
-    const newKey = isft ? "ft" : "in";
+  const updateBreadth = (value, id) => {
     const item = list.find((e) => e.id === id);
     if (!item) return;
-    const newItem = { ...item, breadth: { ...item.breadth, [newKey]: value } };
+
+    const [ft, inch] = value.split(".");
+    const isBreadthValid = parseInt(inch) <= 11;
+
+    const displayBreadth = displayMeasurement(value, isBreadthValid);
+
+    const newItem = {
+      ...item,
+      breadth: { ft, in: inch },
+      breadthStr: value,
+      isBreadthValid,
+      displayBreadth,
+    };
     const total = computeTotal(newItem);
     setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
   };

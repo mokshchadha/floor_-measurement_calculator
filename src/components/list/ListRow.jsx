@@ -9,6 +9,10 @@ export const ListRow = ({
   idx,
   removeItem,
   total,
+  displayLength,
+  displayBreadth,
+  lengthStr,
+  breadthStr,
 }) => {
   return (
     <tr key={id} className="table__row">
@@ -22,32 +26,22 @@ export const ListRow = ({
       </td>
       <td className="input__box">
         <input
-          type="number"
-          value={length.ft}
+          type="text"
+          value={lengthStr}
           onChange={(e) => updateLength(e.target.value, id)}
           placeholder="ft"
         ></input>
-        <input
-          type="number"
-          value={length.in}
-          onChange={(e) => updateLength(e.target.value, id, false)}
-          placeholder="in"
-        ></input>
+        <span>{displayLength}</span>
       </td>
       <td>*</td>
       <td className="input__box">
         <input
           type="number"
-          value={breadth.ft}
+          value={breadthStr}
           onChange={(e) => updateBreadth(e.target.value, id)}
           placeholder="ft"
         ></input>
-        <input
-          type="number"
-          value={breadth.in}
-          onChange={(e) => updateBreadth(e.target.value, id, false)}
-          placeholder="in"
-        ></input>
+        <span>{displayBreadth}</span>
       </td>
       <td>{total}</td>
       <td>
