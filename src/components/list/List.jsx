@@ -112,7 +112,7 @@ export const List = () => {
   };
 
   return (
-    <div className="main">
+    <div className="card">
       <div>
         <div>
           <table>
