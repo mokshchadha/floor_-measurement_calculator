@@ -2,24 +2,10 @@ import "./list.css";
 
 import React, { useState } from "react";
 import { ListRow } from "./ListRow";
+import { emptyListObject } from "../../utils";
+import { AddOneButton } from "../buttons/AddOne";
 
 const _1_FT_TO_INCHES = 12;
-
-function emptyListObject() {
-  return {
-    id: crypto.randomUUID(),
-    title: "",
-    total: "",
-    length: { ft: "", in: "" },
-    breadth: { ft: "", in: "" },
-    lengthStr: "",
-    breadthStr: "",
-    displayLength: "",
-    displayBreadth: "",
-    isLengthValid: true,
-    isBreadthValid: true,
-  };
-}
 
 function displayMeasurement(value, isValid) {
   if (!isValid) return "";
@@ -127,9 +113,6 @@ export const List = () => {
 
   return (
     <div>
-      <button onClick={() => setList([...list, emptyListObject()])}>
-        Add One
-      </button>
       <div>
         <table>
           <thead>
@@ -154,6 +137,7 @@ export const List = () => {
           </tbody>
         </table>
       </div>
+      <AddOneButton list={list} setList={setList} />
     </div>
   );
 };

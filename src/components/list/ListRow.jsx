@@ -1,8 +1,6 @@
-import { Remove } from "../buttons/Remove";
+import { RemoveButton } from "../buttons/Remove";
 
 export const ListRow = ({
-  length,
-  breadth,
   title,
   id,
   updateTitle,
@@ -47,7 +45,7 @@ export const ListRow = ({
       </td>
       <td>{total}</td>
       <td>
-        <Remove removeItem={removeItem} id={id} />
+        <RemoveButton removeItem={removeItem} id={id} />
       </td>
     </tr>
   );
