@@ -25,13 +25,13 @@ function displayMeasurement(value, isValid) {
   if (!isValid) return "";
   const [ft, inch] = value.split(".");
   if (ft.trim() === "") return "";
-  return `${ft}' ${inch}"`;
+  return `${ft ?? ""}' ${inch ?? ""}"`;
 }
 
 function isMeasurementValid(measurement) {
   const ft = parseFloat(measurement.ft);
   const inch = parseFloat(measurement.in);
-  if (!isNaN(ft) && measurement.in.trim() == "") return true; // even if ft is filled its okay
+  if (!isNaN(ft) && measurement?.in?.trim() == "") return true; // even if ft is filled its okay
   return !isNaN(ft) && !isNaN(inch);
 }
 
@@ -84,7 +84,7 @@ export const List = () => {
 
     const [ft, inch] = value.split(".");
 
-    const isLengthValid = parseInt(inch) <= 11;
+    const isLengthValid = inch ? parseInt(inch) <= 11 : true;
 
     const displayLength = displayMeasurement(value, isLengthValid);
 

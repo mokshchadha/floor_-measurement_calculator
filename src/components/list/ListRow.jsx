@@ -1,3 +1,5 @@
+import { Remove } from "../buttons/Remove";
+
 export const ListRow = ({
   length,
   breadth,
@@ -45,7 +47,7 @@ export const ListRow = ({
       </td>
       <td>{total}</td>
       <td>
-        <button onClick={() => removeItem(id)}>Remove</button>
+        <Remove removeItem={removeItem} id={id} />
       </td>
     </tr>
   );
