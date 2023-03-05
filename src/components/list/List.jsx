@@ -48,10 +48,7 @@ export const List = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => setList([...list, emptyListObject()])}>
-        Add One
-      </button>
+    <div className="main">
       <div>
         <table>
           <thead>
@@ -75,6 +72,12 @@ export const List = () => {
           </tbody>
         </table>
       </div>
+      &nbsp; 
+      <div>
+      <button className="add" onClick={() => setList([...list, emptyListObject()])}>
+        Add One
+      </button>
+    </div>
     </div>
   );
 };
