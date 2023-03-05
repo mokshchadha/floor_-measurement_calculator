@@ -1,6 +1,6 @@
+import { RemoveButton } from "../buttons/Remove";
+
 export const ListRow = ({
-  length,
-  breadth,
   title,
   id,
   updateTitle,
@@ -9,6 +9,10 @@ export const ListRow = ({
   idx,
   removeItem,
   total,
+  displayLength,
+  displayBreadth,
+  lengthStr,
+  breadthStr,
 }) => {
   return (
     <tr key={id} className="table__row">
@@ -16,44 +20,33 @@ export const ListRow = ({
       <td className="input__box">
         <input
           type="text"
-          placeholder="Enter your Title"
           value={title}
           onChange={(e) => updateTitle(e.target.value, id)}
         ></input>
       </td>
       <td className="input__box">
         <input
-          type="number"
-          value={length.ft}
+          type="text"
+          value={lengthStr}
           onChange={(e) => updateLength(e.target.value, id)}
-          placeholder="in Feet"
+          placeholder="ft"
         ></input>
-        <input
-          type="number"
-          value={length.in}
-          onChange={(e) => updateLength(e.target.value, id, false)}
-          placeholder="in Inches"
-        ></input>
+        <span>{displayLength}</span>
       </td>
+      <td>*</td>
       <td className="input__box">
         <input
           type="number"
-          value={breadth.ft}
+          value={breadthStr}
           onChange={(e) => updateBreadth(e.target.value, id)}
-          placeholder="in Feet"
+          placeholder="ft"
         ></input>
-        <input
-          type="number"
-          value={breadth.in}
-          onChange={(e) => updateBreadth(e.target.value, id, false)}
-          placeholder="in Inches"
-        ></input>
+        <span>{displayBreadth}</span>
       </td>
       <td>{total}</td>
       <td>
-        <button className="remove" onClick={() => removeItem(id)}>Remove</button>
+        <RemoveButton removeItem={removeItem} id={id} />
       </td>
     </tr>
-
   );
 };

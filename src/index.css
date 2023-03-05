@@ -3,3 +3,52 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root{
+    --sky-blue-color:#03ecfc;
+    --blue-color:#116efa;
+}
+
+body{
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color:#777;
+    padding:1rem;
+}
+
+
+
+
+.main__heading{
+    backface-visibility: hidden;
+    background-image: linear-gradient(to right , var(--sky-blue-color), var(--blue-color));
+    color:transparent;
+    display: inline-block;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    backface-visibility: hidden;
+
+    animation-name: appearFromBelow;
+    animation-duration: 600ms;
+
+}
+
+@keyframes appearFromBelow {
+    0%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    80%{
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+
+    100%{
+        opacity: 0;
+        transform: translateY(0px);
+    }
+}

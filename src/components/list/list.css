@@ -33,7 +33,12 @@ input[type=number] {
     text-align: start;
   }
   .input__box{
+ 
       margin-right: 0.5 rem;
+ 
+      margin-right: 0.5rem;
+     padding: 1rem;
+ 
   }
   table {
     border-collapse: collapse;
