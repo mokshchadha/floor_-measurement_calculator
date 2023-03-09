@@ -17,7 +17,7 @@ function displayMeasurement(value, isValid) {
 function isMeasurementValid(measurement) {
   const ft = parseFloat(measurement.ft);
   const inch = parseFloat(measurement.in);
-  if (!isNaN(ft) && measurement?.in?.trim() == "") return true; // even if ft is filled its okay
+  if (!measurement.in && parseInt(measurement.ft) > 0) return true; // even if ft is filled its okay
   return !isNaN(ft) && !isNaN(inch);
 }
 
@@ -49,8 +49,8 @@ function computeTotal(item) {
 
     const precise = (areaInInches / inchesSquare).toFixed(5);
     const front = precise.split(".")[0];
-    const back = precise.split(".")[1];
-    const only2InBack = back.slice(0, 2);
+    const back = precise.split(".")?.[1];
+    const only2InBack = back ? back.slice(0, 2) : "00";
     const dispalyAr = front + "." + only2InBack;
     return `${dispalyAr}`;
   }
