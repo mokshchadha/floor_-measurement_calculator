@@ -1,6 +1,7 @@
 import "./list.css";
 
 import React, { useState } from "react";
+import ReactToPdf from "react-to-pdf";
 import { ListRow } from "./ListRow";
 import { emptyListObject } from "../../utils";
 import { AddOneButton } from "../buttons/AddOne";
@@ -59,6 +60,7 @@ function computeTotal(item) {
 }
 
 export const List = () => {
+  const ref = React.createRef();
   const [list, setList] = useState([emptyListObject()]);
   const updateTitle = (value, id) => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
@@ -115,6 +117,14 @@ export const List = () => {
     <div className="card">
       <div>
         <div>
+          <ReactToPdf
+            targetRef={ref}
+            filename={`measurement_sheet_${new Date().getTime()}.pdf`}
+          >
+            {({ toPdf }) => <button onClick={toPdf}>Convert To PDF</button>}
+          </ReactToPdf>
+        </div>
+        <div>
           <table>
             <thead>
               <tr>
@@ -125,7 +135,7 @@ export const List = () => {
                 <th>Total Sq Ft</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody ref={ref}>
               {...list.map((e, i) =>
                 ListRow({
                   ...e,
