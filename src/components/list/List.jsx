@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { ListRow } from "./ListRow";
 import { emptyListObject } from "../../utils";
 import { AddOneButton } from "../buttons/AddOne";
+import { RemoveButton } from "../buttons/Remove";
+
 
 const _1_FT_TO_INCHES = 12;
 
@@ -60,6 +62,8 @@ function computeTotal(item) {
 
 export const List = () => {
   const [list, setList] = useState([emptyListObject()]);
+  const [deleteId, setDeleteId] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
   const updateTitle = (value, id) => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
   };
@@ -110,7 +114,6 @@ export const List = () => {
     const newList = list.filter((e) => e.id !== id);
     setList([...newList]);
   };
-
   return (
     <div className="card">
       <div>

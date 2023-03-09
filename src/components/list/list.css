@@ -1,8 +1,6 @@
 .main{
-    /* background-image:url("assets/image.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; */
     background-color: white;
+    position: relative;
 }
 /* .flex-container {
     display: flex;
@@ -24,7 +22,7 @@ input[type=text] {
   }
 input[type=number] {
     font-size: 15px;
-    width: 30%;
+    width: 35%;
     padding: 4px 4px;
     margin: 0;
     border-radius: 4px;
@@ -63,32 +61,3 @@ tr:nth-child(even) {
 tr:nth-child(odd){
     background-color: #F2F2F2;
 }
-.add {
-    background-color: white; 
-    color: green;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-  }
-.add:hover{
-    background-color: rgb(247, 240, 240);
-    box-shadow: 0px 0px 2px 2px rgb(9, 183, 76);
-}
-.remove{
-    background-color: white;
-    color: rgb(227, 11, 11);
-    padding: 5px 10px;
-     border-radius: 4px; 
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    /* cursor: pointer; */
-}
-.remove:hover{
-    background-color: rgb(247, 240, 240);
-    box-shadow: 0px 0px 2px 2px rgb(237, 28, 28);
-}
-
