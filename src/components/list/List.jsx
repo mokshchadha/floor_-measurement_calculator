@@ -117,12 +117,14 @@ export const List = () => {
         <div>
           <table>
             <thead>
-              <td>Sr. No</td>
-              <td>Title</td>
-              <td>Length</td>
-              <td></td>
-              <td>Breadth</td>
-              <td>Total</td>
+              <tr>
+                <td>Sr. No</td>
+                <td>Title</td>
+                <td>Length</td>
+                {/* <td></td> */}
+                <td>Breadth</td>
+                <td>Total</td>
+              </tr>
             </thead>
             <tbody>
               {...list.map((e, i) =>

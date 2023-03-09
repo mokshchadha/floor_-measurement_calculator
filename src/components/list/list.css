@@ -24,71 +24,81 @@ input[type=text] {
   }
 input[type=number] {
     font-size: 15px;
-    width: 30%;
+    max-width: 4rem;
     padding: 4px 4px;
     margin: 0;
     border-radius: 4px;
   }
+
 .input__segment{
     display: flex;
     flex-direction: row;
     text-align: start;
   }
-  .input__box{
- 
-      margin-right: 0.5 rem;
- 
-      margin-right: 0.5rem;
-     padding: 1rem;
+
+
+.input__box{
+    margin-right: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
  
   }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-}
-thead{
-    text-align: justify;
-    font-size: 40;
-    font-weight: bold;
-    font-family: sans-serif;
-}  
-th, td {
-    text-align: center;
-    padding: 8px;
-}
-  
-tr:nth-child(even) {
-    background-color: #FFFFFF;
-}
-tr:nth-child(odd){
-    background-color: #F2F2F2;
-}
-.add {
-    background-color: white; 
-    color: green;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-  }
-.add:hover{
-    background-color: rgb(247, 240, 240);
-    box-shadow: 0px 0px 2px 2px rgb(9, 183, 76);
-}
-.remove{
-    background-color: white;
-    color: rgb(227, 11, 11);
-    padding: 5px 10px;
-     border-radius: 4px; 
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    /* cursor: pointer; */
-}
-.remove:hover{
-    background-color: rgb(247, 240, 240);
-    box-shadow: 0px 0px 2px 2px rgb(237, 28, 28);
+
+.title__input{
+  min-width: 9rem;
 }
 
+.number__input{
+  min-width: 4rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+th, td {
+    text-align: center;
+    padding: 0.5rem;
+}
+  
+tr:nth-child(odd) {
+    background-color: var(--white-color)
+}
+tr:nth-child(even){
+    background-color: var( --light-gray-color)
+}
+
+.total__text{
+  font-size: 14px;
+  color:black
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+ th,td {
+  font-size: 0.75rem;
+  font-weight: bold;
+ }
+
+  .input__box {
+   padding: 0;
+   margin: 0;
+  }
+
+  .number__input{
+    min-width: 3rem;
+    margin-left: 0.75rem;
+  }
+
+  .multiplier{
+    display: none;
+  }
+  
+  
+
+}

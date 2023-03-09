@@ -17,33 +17,35 @@ export const ListRow = ({
   return (
     <tr key={id} className="table__row">
       <td>{idx + 1}</td>
-      <td className="input__box">
+      <td className="input__box title__input">
         <input
           type="text"
           value={title}
           onChange={(e) => updateTitle(e.target.value, id)}
         ></input>
       </td>
-      <td className="input__box">
+      <td className="input__box number__input">
         <input
-          type="text"
+          type="number"
           value={lengthStr}
           onChange={(e) => updateLength(e.target.value, id)}
           placeholder="ft"
         ></input>
-        <span>{displayLength}</span>
+        <span>{displayLength?.length > 0 ? `(${displayLength})` : ""}</span>
       </td>
-      <td>*</td>
-      <td className="input__box">
+      {/* <td className="multiplier">*</td> */}
+      <td className="input__box number__input">
         <input
           type="number"
           value={breadthStr}
           onChange={(e) => updateBreadth(e.target.value, id)}
           placeholder="ft"
         ></input>
-        <span>{displayBreadth}</span>
+        <span>{displayBreadth?.length > 0 ? `( ${displayBreadth})` : ""}</span>
       </td>
-      <td>{total}</td>
+      <td>
+        <span className="total__text">{total}</span>
+      </td>
       <td>
         <RemoveButton removeItem={removeItem} id={id} />
       </td>

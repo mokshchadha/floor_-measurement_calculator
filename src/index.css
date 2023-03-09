@@ -7,6 +7,9 @@
 :root{
     --sky-blue-color:#03ecfc;
     --blue-color:#116efa;
+    --light-gray-color: #F2F2F2;
+    --white-color:#FFFFFF;
+    text-align: center;
 }
 
 body{
@@ -27,8 +30,12 @@ body{
     align-content: center;
     transform: translateX(15%);
     height: 100vh;
+    background-color: white;
 }
 
+.card {
+    padding: 2em;
+  }
 
 
 
@@ -63,3 +70,24 @@ body{
         transform: translateY(0px);
     }
 }
+
+
+@media only screen and (max-width: 500px) {
+    body {
+     background-image: none;
+     padding: 0;
+     margin: 0;
+    }
+
+    .App {
+        width: 100%;
+        display: block;
+        align-content: start;
+    }
+
+    .card{
+        margin: 0;
+        padding: 0;
+       }
+
+  }
