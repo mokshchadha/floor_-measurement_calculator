@@ -52,7 +52,7 @@ function computeTotal(item) {
     const back = precise.split(".")[1];
     const only2InBack = back.slice(0, 2);
     const dispalyAr = front + "." + only2InBack;
-    return `${dispalyAr} sq ft`;
+    return `${dispalyAr}`;
   }
 
   return "";
@@ -91,7 +91,7 @@ export const List = () => {
     if (!item) return;
 
     const [ft, inch] = value.split(".");
-    const isBreadthValid = parseInt(inch) <= 11;
+    const isBreadthValid = inch ? parseInt(inch) <= 11 : true;
 
     const displayBreadth = displayMeasurement(value, isBreadthValid);
 
@@ -118,12 +118,11 @@ export const List = () => {
           <table>
             <thead>
               <tr>
-                <td>Sr. No</td>
-                <td>Title</td>
-                <td>Length</td>
-                {/* <td></td> */}
-                <td>Breadth</td>
-                <td>Total</td>
+                <th>Sr. No</th>
+                <th>Title</th>
+                <th>Length</th>
+                <th>Breadth</th>
+                <th>Total Sq Ft</th>
               </tr>
             </thead>
             <tbody>
