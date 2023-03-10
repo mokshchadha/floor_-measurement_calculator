@@ -1,7 +1,6 @@
 import "./list.css";
 
 import React, { useState } from "react";
-import ReactToPdf from "react-to-pdf";
 import { ListRow } from "./ListRow";
 import { emptyListObject } from "../../utils";
 import { AddOneButton } from "../buttons/AddOne";
@@ -13,6 +12,10 @@ function displayMeasurement(value, isValid) {
   const [ft, inch] = value.split(".");
   if (ft.trim() === "") return "";
   return `${ft ?? ""}' ${inch ?? ""}"`;
+}
+
+function storeInLocalStorage(list) {
+  localStorage.setItem("list", JSON.stringify(list));
 }
 
 function isMeasurementValid(measurement) {
@@ -60,7 +63,6 @@ function computeTotal(item) {
 }
 
 export const List = () => {
-  const ref = React.createRef();
   const [list, setList] = useState([emptyListObject()]);
   const updateTitle = (value, id) => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
@@ -86,6 +88,7 @@ export const List = () => {
 
     const total = computeTotal(newItem);
     setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
+    storeInLocalStorage(list);
   };
 
   const updateBreadth = (value, id) => {
@@ -106,6 +109,7 @@ export const List = () => {
     };
     const total = computeTotal(newItem);
     setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
+    storeInLocalStorage(list);
   };
 
   const removeItem = (id) => {
@@ -117,12 +121,13 @@ export const List = () => {
     <div className="card">
       <div>
         <div>
-          <ReactToPdf
-            targetRef={ref}
-            filename={`measurement_sheet_${new Date().getTime()}.pdf`}
+          <button
+            onClick={() => {
+              window.location.href = window.location.href + "sheet";
+            }}
           >
-            {({ toPdf }) => <button onClick={toPdf}>Convert To PDF</button>}
-          </ReactToPdf>
+            Convert To PDF
+          </button>
         </div>
         <div>
           <table>
@@ -135,7 +140,7 @@ export const List = () => {
                 <th>Total Sq Ft</th>
               </tr>
             </thead>
-            <tbody ref={ref}>
+            <tbody>
               {...list.map((e, i) =>
                 ListRow({
                   ...e,

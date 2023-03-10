@@ -78,6 +78,14 @@ tr:nth-child(even){
   color:black
 }
 
+.table__readonly{
+  border:solid 0.5px grey;
+}
+
+.tr__readonly > td{
+  border:solid 0.5px grey;
+}
+
 
 
 @media only screen and (max-width: 600px) {
