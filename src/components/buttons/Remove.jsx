@@ -44,3 +44,4 @@ RemoveButton.propTypes = {
   removeItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
+

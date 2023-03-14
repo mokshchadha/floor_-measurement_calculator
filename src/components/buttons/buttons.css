@@ -1,4 +1,4 @@
-.add {
+/* .add {
     color: #fff;
     background-color: #04AA6D;
     padding: 5px 10px;
@@ -20,10 +20,29 @@
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+} */
+.add {
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: green;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
 }
+
+.add:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
 .remove{
     color: #fff;
-    background-color:#ee6969;
+    background-color: #FF0000;
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 16px;
@@ -33,27 +52,29 @@
     text-align: center;
     cursor: pointer;
     outline: none;
-    box-shadow: 5px 5px #fcfafa;
+    box-shadow: 5px 5px 28px 1px #fcfafa;
 }
-.remove:hover {
+/* .remove:hover {
     background-color: #c00;
-}
+} */
 .remove:active {
-    background-color: #FF0000;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    background-color:#c71f1f;
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* transform: translateY(4px); */
 }
   
   .popup {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    /* display: flex;
+    /* width: 100%; 
+    display: flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center; 
+     */
   }
+
   
   .popup-content {
     background-color: #fff;
@@ -81,8 +102,11 @@
     background-color: #4caf50;
   }
   
+  .popup-button:last-child:hover{
+    background-color: green;
+  }
   .popup-button:hover {
-    background-color: #f00;
+    background-color:#c71f1f;
   }
   
   
