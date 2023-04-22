@@ -1,10 +1,6 @@
 import React from "react";
 import ReactToPdf from "react-to-pdf";
-
-function getListFromLocalStorage() {
-  const listStr = localStorage.getItem("list");
-  return JSON.parse(listStr);
-}
+import { getListFromLocalStorage } from "../../repo";
 
 export const ReadOnlyList = () => {
   const list = getListFromLocalStorage();
@@ -13,15 +9,19 @@ export const ReadOnlyList = () => {
   if (list && list.length > 0)
     return (
       <div>
-        <div>
+        <div className="row">
           <ReactToPdf
             targetRef={ref}
             filename={`measurement_sheet_${new Date().getTime()}.pdf`}
           >
-            {({ toPdf }) => <button onClick={toPdf}>Download PDF</button>}
+            {({ toPdf }) => (
+              <button className="btn" onClick={() => toPdf()}>
+                Download PDF
+              </button>
+            )}
           </ReactToPdf>
         </div>
-        <div>
+        <div style={{ width: "100%" }}>
           <table ref={ref} className="table__readonly">
             <thead>
               <tr>

@@ -63,7 +63,7 @@ table {
 
 th, td {
     text-align: center;
-    padding: 0.5rem;
+    padding: 0rem;
 }
   
 tr:nth-child(odd) {
@@ -80,6 +80,8 @@ tr:nth-child(even){
 
 .table__readonly{
   border:solid 0.5px grey;
+  width: 210mm; /* width of A4 page */
+  
 }
 
 .tr__readonly > td{

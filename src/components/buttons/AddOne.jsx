@@ -4,7 +4,10 @@ import { emptyListObject } from "../../utils";
 
 export const AddOneButton = ({ list, setList }) => {
   return (
-    <button onClick={() => setList([...list, emptyListObject()])}>
+    <button
+      className="btn"
+      onClick={() => setList([...list, emptyListObject()])}
+    >
       Add One
     </button>
   );
