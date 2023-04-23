@@ -1,6 +1,17 @@
 import React from "react";
 import ReactToPdf from "react-to-pdf";
 import { getListFromLocalStorage } from "../../repo";
+import { convertAreaInInchesToDisplayAr } from "./common";
+
+function totalOftheList(list) {
+  console.log({ list });
+  const totalAreaInInches = list
+    .filter((e) => e.areaInInches)
+    .reduce((a, e) => a + parseInt(e.areaInInches), 0);
+  console.log({ totalAreaInInches });
+  const displayAr = convertAreaInInchesToDisplayAr(totalAreaInInches);
+  return displayAr;
+}
 
 export const ReadOnlyList = () => {
   const list = getListFromLocalStorage();
@@ -23,8 +34,8 @@ export const ReadOnlyList = () => {
         </div>
         <div style={{ width: "100%" }}>
           <table ref={ref} className="table__readonly">
-            <thead>
-              <tr>
+            <thead className="thead__readonly">
+              <tr className="table_heading_row">
                 <th>Sr. No</th>
                 <th>Title</th>
                 <th>Length</th>
@@ -39,6 +50,15 @@ export const ReadOnlyList = () => {
                   idx: i,
                 })
               )}
+              <tr>
+                <td>{""}</td>
+                <td>{""}</td>
+                <td>{""}</td>
+                <td>
+                  <b>{"TOTAL : "}</b>
+                </td>
+                <td>{totalOftheList(list)}</td>
+              </tr>
             </tbody>
           </table>
         </div>

@@ -5,8 +5,12 @@ import { ListRow } from "./ListRow";
 import { emptyListObject } from "../../utils";
 import { AddOneButton } from "../buttons/AddOne";
 import { getListFromLocalStorage, storeInLocalStorage } from "../../repo";
-
-const _1_FT_TO_INCHES = 12;
+import {
+  _1_FT_TO_INCHES,
+  displayMeasurement,
+  computeTotal,
+  areaInInchesOfItem,
+} from "./common";
 
 export const EditableList = ({ hideEditPanel }) => {
   const [list, setList] = useState([emptyListObject()]);
@@ -33,7 +37,12 @@ export const EditableList = ({ hideEditPanel }) => {
       displayLength,
     };
     const total = computeTotal(newItem);
-    setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
+    const areaInInches = areaInInchesOfItem(newItem);
+    setList([
+      ...list.map((e) =>
+        e.id !== id ? e : { ...newItem, total, areaInInches }
+      ),
+    ]);
     storeInLocalStorage([...list]);
   };
 
@@ -45,7 +54,6 @@ export const EditableList = ({ hideEditPanel }) => {
     const isBreadthValid = inch ? parseInt(inch) <= 11 : true;
 
     const displayBreadth = displayMeasurement(value, isBreadthValid);
-    console.log({ displayBreadth });
 
     const newItem = {
       ...item,
@@ -55,7 +63,13 @@ export const EditableList = ({ hideEditPanel }) => {
       displayBreadth,
     };
     const total = computeTotal(newItem);
-    setList([...list.map((e) => (e.id !== id ? e : { ...newItem, total }))]);
+    const areaInInches = areaInInchesOfItem(newItem);
+
+    setList([
+      ...list.map((e) =>
+        e.id !== id ? e : { ...newItem, total, areaInInches }
+      ),
+    ]);
     storeInLocalStorage([...list]);
   };
 
@@ -110,54 +124,3 @@ export const EditableList = ({ hideEditPanel }) => {
     </div>
   );
 };
-
-function displayMeasurement(value, isValid) {
-  if (!isValid) return "";
-  const [ft, inch] = value.split(".");
-  if (ft.trim() === "") return "";
-  return `${ft ?? ""}' ${inch ?? ""}"`;
-}
-
-function isMeasurementValid(measurement) {
-  const ft = parseFloat(measurement.ft);
-  const inch = parseFloat(measurement.in);
-  if (!measurement.in && parseInt(measurement.ft) > 0) return true; // even if ft is filled its okay
-  return !isNaN(ft) && !isNaN(inch);
-}
-
-function convertToInches(measurement) {
-  const ftToInches = parseFloat(measurement.ft) * _1_FT_TO_INCHES;
-  const inchesToFloat = isNaN(parseFloat(measurement.in))
-    ? 0
-    : parseFloat(measurement.in);
-
-  return ftToInches + inchesToFloat;
-}
-
-function computeTotal(item) {
-  const { length, breadth, isBreadthValid, isLengthValid } = item;
-
-  if (
-    isBreadthValid &&
-    isLengthValid &&
-    isMeasurementValid(length) &&
-    isMeasurementValid(breadth)
-  ) {
-    const lengthInInches = convertToInches(length);
-    const breadthInInches = convertToInches(breadth);
-
-    const areaInInches = lengthInInches * breadthInInches;
-
-    console.log({ areaInInches });
-    const inchesSquare = _1_FT_TO_INCHES * _1_FT_TO_INCHES;
-
-    const precise = (areaInInches / inchesSquare).toFixed(5);
-    const front = precise.split(".")[0];
-    const back = precise.split(".")?.[1];
-    const only2InBack = back ? back.slice(0, 2) : "00";
-    const dispalyAr = front + "." + only2InBack;
-    return `${dispalyAr}`;
-  }
-
-  return "";
-}

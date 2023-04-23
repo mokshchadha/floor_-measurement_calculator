@@ -84,8 +84,16 @@ tr:nth-child(even){
   
 }
 
+/* .table__readonly :last-child{
+  padding-bottom: 3rem;
+} */
+
 .tr__readonly > td{
   border:solid 0.5px grey;
+}
+
+.table_heading_row >th{
+  padding-top: 3rem;
 }
 
 
