@@ -7,7 +7,10 @@ export const AddOneButton = ({ list, setList }) => {
     <button
       className="btn"
       onClick={() => setList([...list, emptyListObject()])}
-      style={{ backgroundColor: list.length === 35 ? "whitesmoke" : "blue" }}
+      style={{
+        backgroundColor: list.length === 35 ? "whitesmoke" : "#28A0E5",
+        marginTop: "10px",
+      }}
       disabled={list.length === 35}
     >
       Add One

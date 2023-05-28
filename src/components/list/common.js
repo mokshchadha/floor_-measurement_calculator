@@ -4,7 +4,7 @@ export function displayMeasurement(value, isValid) {
   if (!isValid) return "";
   const [ft, inch] = value.split(".");
   if (ft.trim() === "") return "";
-  return `${ft ?? ""}' ${inch ?? ""}"`;
+  return `${ft ?? ""}' ${inch ?? "0"}"`;
 }
 
 export function isMeasurementValid(measurement) {

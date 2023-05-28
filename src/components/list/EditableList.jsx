@@ -4,7 +4,11 @@ import React, { useEffect, useState } from "react";
 import { ListRow } from "./ListRow";
 import { emptyListObject } from "../../utils";
 import { AddOneButton } from "../buttons/AddOne";
-import { getListFromLocalStorage, storeInLocalStorage } from "../../repo";
+import {
+  getListFromLocalStorage,
+  storeInLocalStorage,
+  emptyLocalStorage,
+} from "../../repo";
 import {
   _1_FT_TO_INCHES,
   displayMeasurement,
@@ -13,13 +17,16 @@ import {
 } from "./common";
 
 export const EditableList = ({ hideEditPanel }) => {
-  const [list, setList] = useState([emptyListObject()]);
+  const [list, setList] = useState(getListFromLocalStorage());
+
   const updateTitle = (value, id) => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
   };
 
   useEffect(() => {
-    setList[getListFromLocalStorage()];
+    console.log("running use effect");
+
+    setList(getListFromLocalStorage());
   }, []);
 
   const updateLength = (value, id) => {
@@ -81,7 +88,23 @@ export const EditableList = ({ hideEditPanel }) => {
   return (
     <div className="card">
       <div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            marginBottom: "15px",
+          }}
+        >
+          <button
+            className="btn"
+            style={{ backgroundColor: "red" }}
+            onClick={() => {
+              emptyLocalStorage();
+            }}
+          >
+            {" Clear All List "}
+          </button>
           <button
             className="btn"
             onClick={() => {
@@ -89,7 +112,7 @@ export const EditableList = ({ hideEditPanel }) => {
               hideEditPanel();
             }}
           >
-            Preview
+            {" PDF Preview ->"}
           </button>
         </div>
         <div style={{}}>
