@@ -1,6 +1,6 @@
 export function getListFromLocalStorage() {
   const listStr = localStorage.getItem("list");
-  return JSON.parse(listStr);
+  return listStr ? JSON.parse(listStr) : [];
 }
 
 export function storeInLocalStorage(list) {
