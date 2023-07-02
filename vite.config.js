@@ -9,9 +9,9 @@ const manifestforPlugin = {
   },
   includeAssets: ["192.png", "512.png"],
   manifest: {
-    name: "My Awesome App",
-    short_name: "MyApp",
-    description: "My Awesome App description",
+    name: "Floor Measurement Calculator",
+    short_name: "Floor Calc",
+    description: "Floor Measurement Calculator",
     theme_color: "#317EFB",
     icons: [
       {
