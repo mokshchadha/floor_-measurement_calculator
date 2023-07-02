@@ -20,25 +20,27 @@ export const EditableList = ({ hideEditPanel }) => {
   const [list, setList] = useState(
     [
       ...getListFromLocalStorage(),
-      new Array(10).fill(0).map((_) => emptyListObject()),
+      ...new Array(10).fill(0).map((_) => emptyListObject()),
     ].slice(0, 10)
   );
+
+  console.log({ list });
 
   const updateTitle = (value, id) => {
     setList([...list.map((e) => (e.id !== id ? e : { ...e, title: value }))]);
   };
 
-  useEffect(() => {
-    console.log("running use effect");
-    const l =
-      getListFromLocalStorage().length < 10
-        ? [
-            ...getListFromLocalStorage(),
-            new Array(10).fill(0).map((_) => emptyListObject()),
-          ].slice(0, 10)
-        : getListFromLocalStorage();
-    setList(l);
-  }, []);
+  // useEffect(() => {
+  //   console.log("running use effect");
+  //   const l =
+  //     getListFromLocalStorage().length < 10
+  //       ? [
+  //           ...getListFromLocalStorage(),
+  //           new Array(10).fill(0).map((_) => emptyListObject()),
+  //         ].slice(0, 10)
+  //       : getListFromLocalStorage();
+  //   setList(l);
+  // }, []);
 
   const updateLength = (value, id) => {
     const item = list.find((e) => e.id === id);

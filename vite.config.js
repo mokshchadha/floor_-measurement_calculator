@@ -12,7 +12,7 @@ const manifestforPlugin = {
     name: "My Awesome App",
     short_name: "MyApp",
     description: "My Awesome App description",
-    theme_color: "#ffffff",
+    theme_color: "#317EFB",
     icons: [
       {
         src: "192.png",
@@ -23,6 +23,18 @@ const manifestforPlugin = {
         src: "512.png",
         sizes: "512x512",
         type: "image/png",
+      },
+      {
+        src: "512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+      {
+        src: "512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
       },
     ],
   },
