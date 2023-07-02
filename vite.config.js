@@ -4,7 +4,19 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const manifestforPlugin = {
   registerType: "prompt",
-  includeAssets: ["calc.png"],
+  includeAssets: ["calc.png", "192.png", "512.png"],
+  icons: [
+    {
+      src: "192.png",
+      size: "192x192",
+      type: "image/png",
+    },
+    {
+      src: "512.png",
+      size: "512x512",
+      type: "image/png",
+    },
+  ],
   manifest: {
     name: "Floor Measurement Calculator",
     short_name: "Floor Calculator",
